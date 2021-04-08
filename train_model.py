@@ -39,14 +39,14 @@ y = data["Sentiment"]
 tfidf = TfidfVectorizer(tokenizer = cleaning_function)
 classifier = LinearSVC()
 SVC_clf = Pipeline([('tfidf', tfidf), ('clf', classifier)])
-print("Training Model...")
+print("Training Model...", end="\r")
 SVC_clf.fit(X, y)
-print("Model Trained!")
+print("Model Trained!", end="\r")
 
-fname = 'saved_model.sav'
+fname = 'saved_model.pickle'
 # os.mkfifo(fname)
-print("Saving Model...")
+print("Saving Model...", end="\r")
 with open(fname, 'wb') as f:
     pickle.dump(SVC_clf, f)
     
-print("Model Saved")
+print("Model Saved", end="\r")

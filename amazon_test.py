@@ -10,6 +10,8 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 import train_model
 
+## bug: WHEN PAGE HAS NO NEXT ELEMENT
+
 DRIVER_PATH= str(Path('chromedriver').resolve())
 
 user_input_URL = input("Enter Amazon URL: ")

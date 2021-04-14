@@ -33,6 +33,10 @@ def start_scraping(user_input_URL):
     html = driver.page_source
     soup = BeautifulSoup(html, 'lxml')
 
+    comment_arr = []
+    ratings_arr = []
+    pages = 0
+
     try:
         all_reviews_button = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, '//*[@id="cr-pagination-footer-0"]/a')) # Find next page button
@@ -40,11 +44,10 @@ def start_scraping(user_input_URL):
         all_reviews_button.click()
 
         all_pages_reached = False
-        comment_arr = []
-        ratings_arr = []
+        
 
         print("                               ", end="\r") # clearing terminal space
-        pages = 0
+
         while pages < 15:
         # while not all_pages_reached:
             pages += 1
@@ -76,11 +79,11 @@ def start_scraping(user_input_URL):
                 all_pages_reached = True 
                 break
 
-        return comment_arr, ratings_arr, pages
-
     except:
-        # print("Unexpeced Error Occured! Could not locate next page button. Are you sure your link is correct?", end="\r") 
-        return [],[],0
+        pass
+    
+    driver.close()
+    return comment_arr, ratings_arr, pages
 
 # def predict_function(clf, string):
 #     temp = clf.predict([string])

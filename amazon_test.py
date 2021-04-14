@@ -21,6 +21,7 @@ user_input_URL = input("Enter Amazon URL: ")
 # Importing Pickled Model
 print("Importing Trained Model...", end="\r")
 SVC_clf = pickle.load(open('saved_model.pickle', 'rb'))
+print("                            ", end="\r")
 print("Imported Trained Model!", end="\r")
 
 # Translator
@@ -98,6 +99,7 @@ for comment in comment_arr:
     
 # Printing prediction and results
 print("Total number of reviews scraped:", pos+neg)
+print("Total number of pages scraped:", pages)
 print("Total number of positive reviews:", pos)
 print("Total number of negative reviews:", neg)
 # from scraping

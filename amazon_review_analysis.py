@@ -10,20 +10,9 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 import train_model
 
-# def setup():
-#     DRIVER_PATH= str(Path('chromedriver').resolve())
-#     translator = google_translator()
-
 def get_url():
     url_input = input("Enter Amazon URL: ")
     return(url_input)
-
-# def get_trained_model():
-#     # print("Importing Trained Model...", end="\r")
-#     print("Starting...")
-#     SVC_clf = pickle.load(open('saved_model.pickle', 'rb'))
-#     print("                            ", end="\r") # clearing terminal space
-#     # print("Imported Trained Model!", end="\r")
 
 def start_scraping(user_input_URL):
     translator = google_translator()
@@ -84,14 +73,6 @@ def start_scraping(user_input_URL):
     driver.close()
     return comment_arr, ratings_arr, pages
 
-# def predict_function(clf, string):
-#     temp = clf.predict([string])
-#     if (temp[0]==0):
-#         return("Negative Review")
-#     else:
-#         return("Positive Review")
-
-
 def start_predicting(comment_arr):
     clf = pickle.load(open('saved_model.pickle', 'rb'))
 
@@ -122,7 +103,6 @@ def print_result(pos, neg, ratings_arr, pages):
 
 def main():
     user_input_URL = get_url()
-    # clf = get_trained_model()
     comment_arr, ratings_arr, pages = start_scraping(user_input_URL)
     if (len(comment_arr) > 0 and len(ratings_arr) > 0 and pages > 0):
         pos, neg = start_predicting(comment_arr)

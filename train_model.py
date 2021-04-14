@@ -39,9 +39,9 @@ y = data["Sentiment"]
 tfidf = TfidfVectorizer(tokenizer = cleaning_function)
 classifier = LinearSVC()
 SVC_clf = Pipeline([('tfidf', tfidf), ('clf', classifier)])
-print("Training Model...", end="\r")
+# print("Training Model...", end="\r")
 SVC_clf.fit(X, y)
-print("Model Trained!", end="\r")
+# print("Model Trained!", end="\r")
 
 fname = 'saved_model.pickle'
 # os.mkfifo(fname)

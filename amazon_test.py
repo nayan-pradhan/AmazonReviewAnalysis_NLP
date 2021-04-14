@@ -10,7 +10,8 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 import train_model
 
-## bug: WHEN PAGE HAS NO NEXT ELEMENT
+## bug: WHEN PAGE HAS NO NEXT ELEMENT #############
+## when different websit is submitted ###
 
 DRIVER_PATH= str(Path('chromedriver').resolve())
 
@@ -21,7 +22,7 @@ user_input_URL = input("Enter Amazon URL: ")
 # Importing Pickled Model
 print("Importing Trained Model...", end="\r")
 SVC_clf = pickle.load(open('saved_model.pickle', 'rb'))
-print("                            ", end="\r")
+print("                            ", end="\r") # clearing terminal space
 print("Imported Trained Model!", end="\r")
 
 # Translator
@@ -42,15 +43,25 @@ html = driver.page_source
 soup = BeautifulSoup(html, 'lxml')
 
 # Scraping
-all_reviews_button = driver.find_elements_by_xpath('//*[@id="cr-pagination-footer-0"]/a')[0] # Find show all reviews
-all_reviews_button.click()
+# all_reviews_button = driver.find_elements_by_xpath('//*[@id="cr-pagination-footer-0"]/a')[0] # Find show all reviews
+# all_reviews_button.click()
+
+try:
+    all_reviews_button = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, '//*[@id="cr-pagination-footer-0"]/a')) # Find next page button
+    )
+    all_reviews_button.click()
+except:
+    print("Unexpeced Error Occured! Could not locate next page button.", end="\r") 
+    all_pages_reached = True 
+
 
 # for iterating and storing
 all_pages_reached = False
 comment_arr = []
 ratings_arr = []
 
-print("                               ", end="\r")  # clearing terminal space
+print("                               ", end="\r") # clearing terminal space
 pages = 0
 while pages < 15:
 # while not all_pages_reached:

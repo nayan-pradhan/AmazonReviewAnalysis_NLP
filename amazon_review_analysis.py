@@ -38,14 +38,13 @@ def start_scraping(user_input_URL):
     pages = 0
 
     try:
-        all_reviews_button = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.XPATH, '//*[@id="cr-pagination-footer-0"]/a')) # Find next page button
+        all_reviews_button = WebDriverWait(driver, 10).until( 
+           (EC.element_to_be_clickable((By.XPATH, '//*[@id="reviews-medley-footer"]/div[2]/a'))) or (EC.element_to_be_clickable((By.XPATH, '//*[@id="cr-pagination-footer-0"]/a')))
         )
         all_reviews_button.click()
 
         all_pages_reached = False
         
-
         print("                               ", end="\r") # clearing terminal space
 
         while pages < 15:

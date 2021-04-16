@@ -15,3 +15,7 @@ source venv/bin/activate
 ```bash
 pip3 install -r requirements.txt
 ```
+4. Run the python file:
+```bash
+python3 amazon_review_analysis.py
+```

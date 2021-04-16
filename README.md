@@ -5,7 +5,7 @@
 ```bash
 git clone https://github.com/nayan-pradhan/AmazonReviewsAnalysis_NLP
 ```
-4. Install and setup a virtual environment: 
+4. Navigate into your cloned local directory and setup a virtual environment: 
 ```bash
 pip3 install virtualenv
 virtualenv venv

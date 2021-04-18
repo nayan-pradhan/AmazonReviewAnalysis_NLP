@@ -18,7 +18,10 @@ def get_url():
 def start_scraping(user_input_URL):
     DRIVER_PATH= str(Path('chromedriver').resolve())
     driver = webdriver.Chrome(executable_path=DRIVER_PATH)
-    driver.get(user_input_URL)
+    try:
+        driver.get(user_input_URL)
+    except:
+        return [],[],0
     html = driver.page_source
     soup = BeautifulSoup(html, 'lxml')
 

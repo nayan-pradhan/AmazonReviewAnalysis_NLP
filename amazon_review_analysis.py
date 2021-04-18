@@ -28,7 +28,8 @@ def start_scraping(user_input_URL):
 
     try:
         all_reviews_button = WebDriverWait(driver, 10).until( 
-           (EC.element_to_be_clickable((By.XPATH, '//*[@id="reviews-medley-footer"]/div[2]/a'))) or (EC.element_to_be_clickable((By.XPATH, '//*[@id="cr-pagination-footer-0"]/a')))
+           (EC.element_to_be_clickable((By.XPATH, '//*[@id="reviews-medley-footer"]/div[2]/a'))) \
+               or (EC.element_to_be_clickable((By.XPATH, '//*[@id="cr-pagination-footer-0"]/a')))
         )
         all_reviews_button.click()
 
@@ -36,7 +37,7 @@ def start_scraping(user_input_URL):
         
         print("                               ", end="\r") # clearing terminal space
 
-        while pages < 15:
+        while pages < 2:
         # while not all_pages_reached:
             pages += 1
             print("Reading Page: {}".format(pages), end="\r")
@@ -50,8 +51,10 @@ def start_scraping(user_input_URL):
                 ## Translator gets blocked from Google's side if there are too many requests
                 # if((translator.detect(comment_temp))[0]!='en'):
                 #     comment_temp = translator.translate(comment_temp, lang_tgt='en')
-                    
-                comment_arr.append(comment_temp)
+            
+                cleaned_comment_temp = train_model.cleaning_function(comment_temp)
+                cleaned_joint_comment_temp = ' '.join(cleaned_comment_temp)
+                comment_arr.append(cleaned_joint_comment_temp)
             
             for rating in ratings:
                 rating_temp = float(rating.text[:3])
@@ -59,7 +62,8 @@ def start_scraping(user_input_URL):
             
             try:
                 next_page_button = WebDriverWait(driver, 5).until(
-                    EC.element_to_be_clickable((By.XPATH, '//*[@id="cm_cr-pagination_bar"]/ul/li[2]/a')) # Find next page button
+                    EC.element_to_be_clickable((By.XPATH, \
+                        '//*[@id="cm_cr-pagination_bar"]/ul/li[2]/a')) # Find next page button
                 )
                 next_page_button.click()
             except:
@@ -98,8 +102,8 @@ def print_result(pos, neg, ratings_arr, pages):
     print("Total number of reviews scraped:", pos+neg)
     print("Total number of positive reviews:", pos)
     print("Total number of negative reviews:", neg)
-    # from scraping
-    print("Average rating from reviewers:", '%.2f' % (sum(ratings_arr)/len(ratings_arr)))
+    print("Average rating from reviewers:", '%.2f' \
+        % (sum(ratings_arr)/len(ratings_arr)))
 
 def main():
     user_input_URL = get_url()

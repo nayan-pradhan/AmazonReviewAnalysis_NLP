@@ -10,6 +10,8 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 import train_model
 
+desired_number_of_pages = 5
+
 def get_url():
     url_input = input("Enter Amazon URL: ")
     return(url_input)
@@ -37,7 +39,7 @@ def start_scraping(user_input_URL):
         
         print("                               ", end="\r") # clearing terminal space
 
-        while pages < 2:
+        while pages < desired_number_of_pages:
         # while not all_pages_reached:
             pages += 1
             print("Reading Page: {}".format(pages), end="\r")

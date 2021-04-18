@@ -52,7 +52,9 @@ def start_scraping(user_input_URL):
 
                 ## Translator gets blocked from Google's side if there are too many requests
                 # if((translator.detect(comment_temp))[0]!='en'):
+                #     print('b4:', comment_temp)
                 #     comment_temp = translator.translate(comment_temp, lang_tgt='en')
+                #     print('after:', comment_temp)
             
                 cleaned_comment_temp = train_model.cleaning_function(comment_temp)
                 cleaned_joint_comment_temp = ' '.join(cleaned_comment_temp)

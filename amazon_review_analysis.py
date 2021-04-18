@@ -1,5 +1,4 @@
 import pandas as pd
-from google_trans_new import google_translator
 import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -17,7 +16,6 @@ def get_url():
     return(url_input)
 
 def start_scraping(user_input_URL):
-    translator = google_translator()
     DRIVER_PATH= str(Path('chromedriver').resolve())
     driver = webdriver.Chrome(executable_path=DRIVER_PATH)
     driver.get(user_input_URL)
@@ -49,12 +47,6 @@ def start_scraping(user_input_URL):
             for comment in comments:
                 comment_temp = comment.span.text
                 time.sleep(0.2) # wait for page to load properly
-
-                ## Translator gets blocked from Google's side if there are too many requests
-                # if((translator.detect(comment_temp))[0]!='en'):
-                #     print('b4:', comment_temp)
-                #     comment_temp = translator.translate(comment_temp, lang_tgt='en')
-                #     print('after:', comment_temp)
             
                 cleaned_comment_temp = train_model.cleaning_function(comment_temp)
                 cleaned_joint_comment_temp = ' '.join(cleaned_comment_temp)

@@ -22,3 +22,12 @@ pip3 install -r requirements.txt
 ```bash
 python3 amazon_review_analysis.py
 ```
+
+## Files
+1. **amazon_data.txt**: Training data.
+2. **amazon_review_analysis.py**: Main script that gets the url, scrapes data from the amazon website, and predicts the sentiment.
+3. **chromedriver**: Chrome driver to open url.
+4. **requirements.txt**: All libraries/frameworks used.
+5. **saved_model.pickle**: Trained model that gets saved automatically.
+6. **script.ipynb**: Jupyter Notebook script that was used in order to test functions.
+7. **train_model.py**: Script that trains the training data and builds the training model. This scipt is automatically executed when `amazon_review_analysis.py` is executed.

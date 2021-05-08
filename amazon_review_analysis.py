@@ -6,7 +6,6 @@ import pickle
 from selenium import webdriver
 from pathlib import Path 
 from bs4 import BeautifulSoup
-from PyInquirer import style_from_dict, Token, prompt, Separator
 import pyfiglet
 
 print(pyfiglet.figlet_format("WELCOME"))

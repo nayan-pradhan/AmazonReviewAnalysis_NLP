@@ -1,4 +1,3 @@
-import pandas as pd
 import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -7,6 +6,11 @@ import pickle
 from selenium import webdriver
 from pathlib import Path 
 from bs4 import BeautifulSoup
+from PyInquirer import style_from_dict, Token, prompt, Separator
+import pyfiglet
+
+print(pyfiglet.figlet_format("WELCOME"))
+print("Please wait for the modules to be loaded!", end='\r')
 import train_model
 
 desired_number_of_pages = 5
@@ -105,6 +109,7 @@ def print_result(pos, neg, ratings_arr, pages):
         % (sum(ratings_arr)/len(ratings_arr)))
 
 def main():
+    print("                                                 ", end='\r')
     user_input_URL = get_url()
     comment_arr, ratings_arr, pages = start_scraping(user_input_URL)
     if (len(comment_arr) > 0 and len(ratings_arr) > 0 and pages > 0):

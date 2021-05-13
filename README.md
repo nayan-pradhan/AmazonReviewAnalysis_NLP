@@ -3,7 +3,7 @@
 ## Introduction
 This project uses Machine Learning, Natural Language Processing (NLP), and Web Scraping in order to get real customer reviews for any product on Amazon (only [amazon.com](https://www.amazon.com) supported for now) and perform sentiment analysis that predicts whether the reviews are positive or negative.  
 
-When you run the python file `amazon_review_analysis.py`, you are asked to enter a product link from [amazon.com](https://www.amazon.com) (United States). After you enter the product link, the script will autonomously open a Chrome window, open the product page, and surf through the product reviews. After the script goes through the desired number of review pages (by default: 5), the script outputs the total number of pages scraped, total number of reviews scraped, total number of positive reviews, total number of negative reviews, and average rating from the reviewers.  
+When you run the python file `amazon_review_analysis.py`, you are asked to enter a product link from [amazon.com](https://www.amazon.com) (United States). After you enter the product link, the script will automatically open a Chrome window, open the product page, and surf through the product reviews. After the script goes through the desired number of review pages (by default: 5), the script outputs the total number of pages scraped, total number of reviews scraped, total number of positive reviews, total number of negative reviews, and average rating from the reviewers.  
 
 ## Setup and Deployment
 1. Clone the repository into your local machine: 
